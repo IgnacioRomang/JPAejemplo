@@ -1,25 +1,40 @@
 package model;
 
+import static javax.persistence.GenerationType.AUTO;
+
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Basic;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Entity;
-import static javax.persistence.GenerationType.IDENTITY;
-import static javax.persistence.GenerationType.SEQUENCE;
-import static javax.persistence.GenerationType.AUTO;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Product implements Serializable {
 	@Id
-	@GeneratedValue(strategy = AUTO )
-	private Long id;
+	@GeneratedValue(strategy = AUTO)
+	private long id;
 	@Basic
 	private long code;
 	@Basic
 	private String name;
+	
+	public List<Stock> getStockIn() {
+		return stockIn;
+	}
+
+	public void setStockIn(List<Stock> stockIn) {
+		this.stockIn = stockIn;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	@OneToMany(mappedBy = "product")
+	private List<Stock> stockIn;
 
 	public Long getId() {
 		return id;
@@ -55,6 +70,7 @@ public class Product implements Serializable {
 		this.code = code;
 		this.name = name;
 	}
+
 	public Product(long code, String name) {
 		super();
 		this.code = code;
