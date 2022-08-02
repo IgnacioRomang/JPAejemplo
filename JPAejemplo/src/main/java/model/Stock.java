@@ -16,6 +16,12 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Stock implements Serializable {
+	@Override
+	public String toString() {
+		return "Stock [id=" + id + ", product=" + product + ", price=" + price + ", amount=" + amount + ", shop=" + shop
+				+ "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = AUTO)
 	private long id;

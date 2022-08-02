@@ -1,24 +1,27 @@
 package model;
 
+import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.AUTO;
+import static javax.persistence.LockModeType.READ;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import static javax.persistence.FetchType.EAGER;
-import static javax.persistence.CascadeType.ALL;
-import static javax.persistence.FetchType.LAZY;
-import javax.persistence.Access;
-import static javax.persistence.AccessType.FIELD;
 
 @Entity
+@Cacheable
+@NamedQueries({ @NamedQuery(name = "shop.getAll", query = "SELECT p FROM Shop p"),
+		@NamedQuery(name = "shop.getById", query = "SELECT s FROM Shop s WHERE s.id= :id", lockMode = READ) })
 public class Shop implements Serializable {
+
 	@Id
 	@GeneratedValue(strategy = AUTO)
 	private long id;
@@ -26,7 +29,12 @@ public class Shop implements Serializable {
 	@OneToMany(mappedBy = "shop", fetch = LAZY)
 	private List<Stock> inventory;
 
-	private long getId() {
+	@Override
+	public String toString() {
+		return "Shop [id=" + id + ", name=" + name + ", inventory=" + "]";
+	}
+
+	public long getId() {
 		return id;
 	}
 

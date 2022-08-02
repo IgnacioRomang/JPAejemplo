@@ -12,14 +12,38 @@ import model.Product;
 import model.Shop;
 import model.Stock;
 
-public class App {
+public class cargar {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("JPAejemplo");
 		EntityManager em = emf.createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		String namelike = "%o%";
+		List<Product> lis= null;
+		et.begin();
+		try {
+			lis = em.createNamedQuery("shop.getAll").getResultList();
+			et.commit();
+		}catch (Exception e) {
+			et.rollback();
+		}
+		System.out.println(lis.toString()); 
 		
+		/*
+		long id = 101;
+		Product lis= null;
+		et.begin();
+		try {
+			lis = (Product) em.createNamedQuery("product.getById").setParameter("id", id).getSingleResult();
+			et.commit();
+		}catch (Exception e) {
+			et.rollback();
+		}
+		System.out.println(lis.toString()); 
+		*/
+		/*
 		Product nuevo = new Product(2348965, "Sopa");
 		Product nuevo2 = new Product(4258863, "Fideos");
 		Product nuevo3 = new Product(4178378, "Arroz");
@@ -65,6 +89,7 @@ public class App {
 		}
 		em.close();
 		emf.close();
+		*/
 
 	}
 

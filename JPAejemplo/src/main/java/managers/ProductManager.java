@@ -1,5 +1,6 @@
 package managers;
 
+import dto.ProductDTO;
 
 public class ProductManager {
 	public static ProductManager instance;
@@ -14,7 +15,7 @@ public class ProductManager {
 		}
 		return instance;
 	}
-	public ProductManager addNewProduct() {
+	public Long addNewProduct(ProductDTO productDTO) {
 		return null;
 	}
 }
