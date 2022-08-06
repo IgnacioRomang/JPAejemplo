@@ -13,8 +13,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.MapsId;
 import static javax.persistence.FetchType.EAGER;
 import javax.persistence.OneToOne;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQuery(name = "stock.getByShop", query = "SELECT s FROM Stock s WHERE s.shop = :shop")
 public class Stock implements Serializable {
 	@Override
 	public String toString() {

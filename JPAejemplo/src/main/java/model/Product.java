@@ -26,7 +26,7 @@ import javax.persistence.NamedQueries;
 @NamedQueries({ 
 	@NamedQuery(name = "product.getAll", query = "SELECT p FROM Product p"), 
 	@NamedQuery(name = "product.getById", query = "SELECT p FROM Product p WHERE p.id= :id", lockMode = READ),
-	@NamedQuery(name = "product.getByName", query = "SELECT p FROM Product p WHERE p.name LIKE :namelike ") 
+	@NamedQuery(name = "product.getByName", query = "SELECT p FROM Product p WHERE p.name LIKE :namelike")
 })
 public class Product implements Serializable {
 	@Id

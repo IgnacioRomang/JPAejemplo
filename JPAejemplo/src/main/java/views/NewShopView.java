@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -13,6 +14,7 @@ import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
 import dto.ShopDTO;
+import managers.ProductManager;
 
 public class NewShopView extends JDialog {
 	private JTextField txtName;
@@ -31,7 +33,9 @@ public class NewShopView extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				nShopDTO.setName(txtName.getText());
 				if(nShopDTO.getName().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Name field can't be empty");
+					JFrame frame=new JFrame();
+					frame.setAlwaysOnTop(true);
+					JOptionPane.showMessageDialog(frame, "Name field can't be empty");
 				}
 				else {
 					dispose();
@@ -48,13 +52,13 @@ public class NewShopView extends JDialog {
 
 		txtName = new JTextField();
 		springLayout.putConstraint(SpringLayout.WEST, txtName, 81, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, txtName, -44, SpringLayout.NORTH, addNewButton);
 		springLayout.putConstraint(SpringLayout.EAST, txtName, -58, SpringLayout.EAST, getContentPane());
 		txtName.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane().add(txtName);
 		txtName.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Add a new Shop");
-		springLayout.putConstraint(SpringLayout.NORTH, txtName, 47, SpringLayout.SOUTH, lblNewLabel);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel, 12, SpringLayout.NORTH, getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel, 0, SpringLayout.WEST, getContentPane());
@@ -78,8 +82,8 @@ public class NewShopView extends JDialog {
 		getContentPane().add(cancelButton);
 
 		JLabel lblNewLabel_1 = new JLabel("Name");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 3, SpringLayout.NORTH, txtName);
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_1, 24, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, lblNewLabel_1, -47, SpringLayout.NORTH, cancelButton);
 		springLayout.putConstraint(SpringLayout.EAST, lblNewLabel_1, -15, SpringLayout.WEST, txtName);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		getContentPane().add(lblNewLabel_1);

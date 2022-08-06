@@ -18,8 +18,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @Cacheable
-@NamedQueries({ @NamedQuery(name = "shop.getAll", query = "SELECT p FROM Shop p"),
-		@NamedQuery(name = "shop.getById", query = "SELECT s FROM Shop s WHERE s.id= :id", lockMode = READ) })
+@NamedQuery(name = "shop.getAll", query = "SELECT p FROM Shop p")
 public class Shop implements Serializable {
 
 	@Id

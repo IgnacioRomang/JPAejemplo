@@ -14,16 +14,18 @@ import model.Stock;
 public class ShopManager {
 	// TODO HACER QUE GESTIONE ARBOLES DE BUSQUEDAS
 	private static ShopManager instance;
-	
-	private ShopManager(){
+
+	private ShopManager() {
 		super();
 	}
+
 	public static ShopManager getIntenace() {
-		if(instance==null) {
+		if (instance == null) {
 			instance = new ShopManager();
 		}
 		return instance;
 	}
+
 	public void getAllShop(CallbackShop callback) {
 		Runnable runnable = new Runnable() {
 
@@ -41,9 +43,10 @@ public class ShopManager {
 			}
 		};
 		runnable.run();
-		
+
 	}
-	public void addNewShop(CallbackShop callback,ShopDTO shopDTO) {
+
+	public void addNewShop(CallbackShop callback, ShopDTO shopDTO) {
 		Runnable runnable = new Runnable() {
 
 			@Override
@@ -60,4 +63,17 @@ public class ShopManager {
 		};
 		runnable.run();
 	}
+
+	public ShopDTO getDTO(Shop shop) {
+		ShopDTO nShopDTO = new ShopDTO();
+		nShopDTO.setId(shop.getId());
+		nShopDTO.setName(shop.getName());
+		return nShopDTO;
+	}
+
+	public Shop getShopById(long shop_id) {
+		
+		return PersistenceManager.getIntenace().getShopById(shop_id);
+	}
+
 }
